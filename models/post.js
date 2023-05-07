@@ -11,7 +11,7 @@ Post.init(
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            PrimaryKey: true,
+            primaryKey: true,
             autoIncrement: true,
         },
         title: {
@@ -36,7 +36,7 @@ Post.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'painting',
+        modelName: 'post',
     }
 );
 

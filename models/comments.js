@@ -8,7 +8,7 @@ Comments.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        PrimaryKey: true,
+        primaryKey: true,
         autoIncrement: true,
     },
 
@@ -36,7 +36,7 @@ Comments.init({
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'painting',
+        modelName: 'comment',
     }
 );
 module.exports = Comments;
