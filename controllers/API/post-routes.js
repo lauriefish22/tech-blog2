@@ -5,14 +5,14 @@ router.post('/', async (req, res) => {
     try {
         const postData = await Post.create({
             title: req.body.title,
-            contents: req.body.contents,
+            content: req.body.content,
             creator_name: req.body.creator_name,
             date_created: req.body.date_created,
-            comments: '',
+
         });
-        res.status(200).json(postData)
+        res.json(postData)
     } catch (err) {
-        res.status(400).json(err)
+        res.status(500).json(err)
     }
 });
 
@@ -21,24 +21,25 @@ router.put('/:id', async (req, res) => {
         const post = await Post.update(
             {
                 title: req.body.title,
-                contents: req.body.contents,
+                content: req.body.content,
                 creator_name: req.body.creator_name,
                 date_created: req.body.date_created,
-                comments: '',
+
             },
             {
                 where: {
                     id: req.params.id,
                 },
             });
-        res.status(200).json(post);
+        if (post > 0) {
+            res.status(200).end();
+        } else {
+            res.status(400).end();
+        }
     } catch (err) {
         res.status(500).json(err);
-    };
+    }
 });
 
+
 module.exports = router
-
-
-
-module.exports = router;

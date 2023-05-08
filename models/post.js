@@ -1,8 +1,5 @@
-
-const sequelize = require('../config/connection.js');
-//! why const {} require seq. 
 const { Model, DataTypes } = require('sequelize');
-
+const sequelize = require('../config/connection.js');
 
 class Post extends Model { }
 
@@ -19,17 +16,23 @@ Post.init(
             allowNull: false,
         },
         user_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER, // Updated data type to match "id" column in "user" table
             allowNull: false,
-            //! references?
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
         },
         date_created: {
             type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
         content: {
-            type: DataTypes.TEXT,
-
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     },
     {
