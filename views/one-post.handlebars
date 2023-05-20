@@ -1,4 +1,4 @@
-{ {> homepage - detail post } }
+{{!-- { {> homepage - detail post } }
 
 { { #if loggedIn } }
 <div class="card">
@@ -19,4 +19,28 @@
 
         { { #if loggedIn } }
         <script src="/js/comment.js"></script>
-        { { /if}}
+        { { /if}} --}}
+
+<div>
+    <h1>{{post.title}}</h1>
+
+    <p>{{post.content}}</p>
+
+    <h4>{{format_date post.date_created}}</h4>
+</div>
+
+{{#if post.comments}}
+    <div>
+        <h2>Comments</h2>
+
+        {{#each post.comments}}
+            <div>
+                <p>{{comment_body}}</p>
+
+                <p>
+                    {{User.username}}
+                </p>
+            </div>
+        {{/each}}
+    </div>
+{{/if}}

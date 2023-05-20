@@ -1,0 +1,9 @@
+{{#each posts as |post|}}
+
+    <h1>
+        {{post.id}}.
+        <a href='/post/{{post.id}}' post “>{{post.title}}</a>
+    </h1>
+    <div class='content'>{{post.content}}</div>
+
+{{/each}}
