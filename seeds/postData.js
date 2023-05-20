@@ -4,6 +4,7 @@ const postData = [{
     title: "JavaScript",
     content: "JavaScript is so much fun",
     user_id: 1,
+
 },
 {
     title: "HTML",

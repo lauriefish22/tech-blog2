@@ -36,24 +36,27 @@ router.get('/post/:id', async (req, res) => {
     try {
         const postedPosts = await Post.findOne({
             where: { id: req.params.id },
-            include: [
+            include: {
+                model: User,
+                attributes: ['username']
+            }
                 User,
                 {
-                    model: Comments,
-                    include: [User],
-                },
+                model: Comments,
+                include: User,
+            },
             ],
-        });
-        if (postedPosts) {
-            const post = postedPosts.get({ plain: true });
-            console.log(post);
-            res.render('one-post', { post, loggedIn: req.session.loggedIn });
-        } else {
-            res.status(404).end();
-        }
+    });
+if (postedPosts) {
+    const post = postedPosts.get({ plain: true });
+    console.log(post);
+    res.render('one-post', { post, loggedIn: req.session.loggedIn });
+} else {
+    res.status(404).end();
+}
     } catch (err) {
-        res.status(500).json(err);
-    }
+    res.status(500).json(err);
+}
 });
 
 
